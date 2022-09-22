@@ -1,6 +1,6 @@
 <template>
     <div class="form">
-      <textarea v-model="form.message" />
+      <textarea v-model="form.text" />
       <button @click="send">Отправить</button>
     </div>
 </template>
