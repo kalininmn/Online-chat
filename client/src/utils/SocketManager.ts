@@ -1,8 +1,12 @@
 import { Manager } from 'socket.io-client';
 import env from '../consts/env';
 
-const manager = new Manager(env.HOST);
-const socket = manager.socket('/');
+const manager = new Manager(env.WS_HOST);
+const socket = manager.socket('/', {
+  auth: {
+    token: '123',
+  },
+});
 
 // Fired upon a connection error.
 socket.io.on('error', (error) => {

@@ -7,18 +7,22 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue';
+import socket from '@/utils/SocketManager';
 import { ChatMessages, ChatMessage } from '@/Models/ChatMessages';
 
 import ChatForm from './ChatForm.vue';
 import ChatWindowView from '../view/ChatWindowView.vue';
-// import socket from '@/utils/SocketManager';
 
-const data: ChatMessages = reactive([]);
+const data: ChatMessages[] = reactive([]);
 const form: ChatMessage = reactive({ text: '' });
+
+socket.on('message', (serverData) => {
+  data.push(serverData);
+});
 
 function sendForm(model: ChatMessage) {
   console.log(model);
-  // socket.send(model);
+  socket.emit('message', model);
 }
 
 </script>
