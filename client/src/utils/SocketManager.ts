@@ -4,7 +4,7 @@ import env from '../consts/env';
 const manager = new Manager(env.WS_HOST);
 const socket = manager.socket('/', {
   auth: {
-    token: '123',
+    token: 'NOT_AUTHORIZED',
   },
 });
 
@@ -14,12 +14,12 @@ socket.io.on('error', (error) => {
 });
 
 // Fired upon a successful reconnection.
-socket.io.on('reconnect', (attempt) => {
+socket.io.on('reconnect', () => {
   console.log({ socket_reconnect: 'successful' });
 });
 
 // Fired upon an attempt to reconnect.
-socket.io.on('reconnect_attempt', (attempt) => {
+socket.io.on('reconnect_attempt', () => {
   console.log({ socket_reconnect: 'reconnecting' });
 });
 

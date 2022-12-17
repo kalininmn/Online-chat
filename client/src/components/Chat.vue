@@ -16,8 +16,16 @@ import ChatWindowView from '../view/ChatWindowView.vue';
 const data: ChatMessages[] = reactive([]);
 const form: ChatMessage = reactive({ text: '' });
 
+socket.on('messages', (messages) => {
+  console.log(messages);
+});
+
 socket.on('message', (serverData) => {
   data.push(serverData);
+});
+
+socket.on('middleware', (middleware) => {
+  console.log(middleware);
 });
 
 function sendForm(model: ChatMessage) {
